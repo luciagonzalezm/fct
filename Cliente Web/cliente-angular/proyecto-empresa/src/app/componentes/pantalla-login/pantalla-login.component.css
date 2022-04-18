@@ -1,0 +1,119 @@
+* {
+    padding: 0;
+    outline: none;
+}
+
+.formulario {
+    font-family: 'Roboto', sans-serif !important;
+    color: #494949 !important;
+    margin-top: 8vh;
+    margin-bottom: 8vh;
+}
+
+.formulario .formularioLeft h1 {
+    font-size: 35px;
+    margin-top: 20px;
+}
+
+.formularioLeft img {
+    margin: 22px;
+}
+
+.formulario .formularioLeft input:focus {
+    border-color: #ced4da;
+}
+.formulario .formularioLeft input::placeholder {
+   font-size: 15px;
+}
+
+.formularioLeft label {
+    float: left;
+    font-size: 15px;
+    color: grey;
+}
+
+.formulario .formularioLeft input, .formulario .formularioLeft select {
+    border-bottom: 1px solid black !important;
+}
+
+.formulario .formularioLeft i {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #494949;
+}
+
+.formulario .formularioLeft button {
+    background: linear-gradient(45deg,#3aa1d1,#64c8cf);
+    border-radius: 30px;
+    width: 300px;
+    margin-bottom: 20px;
+}
+
+.formulario .formularioRight {
+    background-image: url('../../../assets/imagenes/imagen-login.jpg');
+    height: 640px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.formulario .formularioRight:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg,#3aa1d1,#64c8cf);
+    opacity: 0.4;
+}
+
+.formulario .formularioRight h2 {
+    z-index: 1;
+}
+
+.formulario .formularioRight h2::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: white;
+  bottom: 0;
+  left:50%;
+  transform: translateX(-50%);
+}
+
+.formulario .formularioRight p {
+    z-index: 1;
+}
+
+.formulario .formularioLeft .alert {
+    margin-bottom: 20px;
+    width: 310px;
+    font-size: 12px;
+    text-align: justify;
+}
+
+.formulario .formularioLeft .alert div {
+    padding: 5px;
+}
+
+.alert-secondary {
+    color: #494949 !important;
+    background-color: #008eff21 !important;
+    border-color: #079cff57 !important;
+}
+
+.rounded-4 { border-radius: .5rem; }
+
+.modal-dialog {
+  width: 600px;
+  transition: bottom .75s ease-in-out;
+  margin-top: 25vh !important;
+  margin-bottom: 25vh !important;
+}
+.modal-footer {
+  padding-bottom: 2rem;
+}
+
+.border-right { border-right: 1px solid #eee; }
