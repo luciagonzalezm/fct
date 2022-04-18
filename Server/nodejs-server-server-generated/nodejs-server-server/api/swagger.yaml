@@ -1,0 +1,1214 @@
+---
+swagger: "2.0"
+info:
+  description: "This is a sample server Company server."
+  version: "1.0.0"
+  title: "Swagger Company"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "localhost:8080"
+basePath: "/v1"
+tags:
+- name: "department"
+  description: "Operations about department"
+- name: "administrator"
+  description: "Operations about administrator"
+- name: "supervisor"
+  description: "Operations about supervisor"
+- name: "user"
+  description: "Operations about user"
+- name: "login"
+  description: "Operations about login"
+- name: "question"
+  description: "Operations about question"
+- name: "poll"
+  description: "Operations about poll"
+schemes:
+- "http"
+paths:
+  /postNewDepartment:
+    post:
+      tags:
+      - "department"
+      summary: "Create department"
+      description: "This can only be done by an administrator"
+      operationId: "postNewDepartment"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Created department object"
+        required: true
+        schema:
+          $ref: "#/definitions/Department"
+      responses:
+        "200":
+          description: "Successful operation"
+        "400":
+          description: "Invalid datas supplied"
+        "404":
+          description: "URL not found"
+      x-swagger-router-controller: "Department"
+  /getDepartments:
+    get:
+      tags:
+      - "department"
+      summary: "Get all departments"
+      description: "This can only be done by an administrator"
+      operationId: "getDepartments"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "Successful operation"
+          schema:
+            allOf:
+            - $ref: "#/definitions/Department"
+            - {}
+        "404":
+          description: "URL not found"
+      x-swagger-router-controller: "Department"
+  /getDepartmentByName/{name}:
+    get:
+      tags:
+      - "department"
+      summary: "Get department by name"
+      description: "This can only be done by an administrator"
+      operationId: "getDepartmentByName"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "name"
+        in: "path"
+        description: "The name that needs to be fetched"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/Department"
+        "400":
+          description: "Invalid name supplied"
+        "404":
+          description: "Department not found"
+      x-swagger-router-controller: "Department"
+  /getDepartmentById/{departmentId}:
+    get:
+      tags:
+      - "department"
+      summary: "Get department by ID"
+      description: "This can only be done by an administrator"
+      operationId: "getDepartmentById"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "departmentId"
+        in: "path"
+        description: "ID of department to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/Department"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Department not found"
+      x-swagger-router-controller: "Department"
+  /modifyDepartmentById/{departmentId}:
+    put:
+      tags:
+      - "department"
+      summary: "Updated department using ID"
+      description: "This can only be done by an administrator"
+      operationId: "modifyDepartmentById"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "departmentId"
+        in: "path"
+        description: "ID of department that needs to be updated"
+        required: true
+        type: "integer"
+        format: "int64"
+      - in: "body"
+        name: "body"
+        description: "Updated department object"
+        required: true
+        schema:
+          $ref: "#/definitions/Department"
+      responses:
+        "200":
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/Department"
+        "400":
+          description: "Invalid ID or datas supplied"
+        "404":
+          description: "Department not found"
+      x-swagger-router-controller: "Department"
+  /deleteDepartmentById/{departmentId}:
+    delete:
+      tags:
+      - "department"
+      summary: "Delete department using ID"
+      description: "This can only be done by an administrator"
+      operationId: "deleteDepartmentById"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "departmentId"
+        in: "path"
+        description: "Department ID to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "Successful operation"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Department not found"
+      x-swagger-router-controller: "Department"
+  /postNewAdministrator:
+    post:
+      tags:
+      - "administrator"
+      summary: "Create administrator"
+      description: "This can only be done by an administrator"
+      operationId: "postNewAdministrator"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Created administrator object"
+        required: true
+        schema:
+          $ref: "#/definitions/Administrator"
+      responses:
+        "200":
+          description: "Successful operation"
+        "400":
+          description: "Invalid datas supplied"
+        "404":
+          description: "URL not found"
+      x-swagger-router-controller: "Administrator"
+  /getAdministrators:
+    get:
+      tags:
+      - "administrator"
+      summary: "Get all administrator"
+      description: "This can only be done by an administrator"
+      operationId: "getAdministrators"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "Successful operation"
+          schema:
+            allOf:
+            - $ref: "#/definitions/Administrator"
+            - {}
+        "404":
+          description: "URL not found"
+      x-swagger-router-controller: "Administrator"
+  /getAdministratorByName/{name}:
+    get:
+      tags:
+      - "administrator"
+      summary: "Get administrator by name"
+      description: "This can only be done by an administrator"
+      operationId: "getAdministratorByName"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "name"
+        in: "path"
+        description: "The name that needs to be fetched"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/Administrator"
+        "400":
+          description: "Invalid name supplied"
+        "404":
+          description: "Administrator not found"
+      x-swagger-router-controller: "Administrator"
+  /getAdministratorById/{administratorId}:
+    get:
+      tags:
+      - "administrator"
+      summary: "Get administrator by ID"
+      description: "This can only be done by an administrator"
+      operationId: "getAdministratorById"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "administratorId"
+        in: "path"
+        description: "ID of administrator to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/Administrator"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Administrator not found"
+      x-swagger-router-controller: "Administrator"
+  /modifyAdministratorById/{administratorId}:
+    put:
+      tags:
+      - "administrator"
+      summary: "Updated administrator using ID"
+      description: "This can only be done by an administrator"
+      operationId: "modifyAdministratorById"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "administratorId"
+        in: "path"
+        description: "ID of administrator that needs to be updated"
+        required: true
+        type: "integer"
+        format: "int64"
+      - in: "body"
+        name: "body"
+        description: "Updated administrator object"
+        required: true
+        schema:
+          $ref: "#/definitions/Administrator"
+      responses:
+        "200":
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/Administrator"
+        "400":
+          description: "Invalid ID or datas supplied"
+        "404":
+          description: "Administrator not found"
+      x-swagger-router-controller: "Administrator"
+  /deleteAdministratorById/{administratorId}:
+    delete:
+      tags:
+      - "administrator"
+      summary: "Delete administrator using ID"
+      description: "This can only be done by an administrator"
+      operationId: "deleteAdministratorById"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "administratorId"
+        in: "path"
+        description: "Administrator ID to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "Successful operation"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Administrator not found"
+      x-swagger-router-controller: "Administrator"
+  /postNewSupervisor:
+    post:
+      tags:
+      - "supervisor"
+      summary: "Create supervisor"
+      description: "This can only be done by an administrator"
+      operationId: "postNewSupervisor"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Created supervisor object"
+        required: true
+        schema:
+          $ref: "#/definitions/Supervisor"
+      responses:
+        "200":
+          description: "Successful operation"
+        "400":
+          description: "Invalid datas supplied"
+        "404":
+          description: "URL not found"
+      x-swagger-router-controller: "Supervisor"
+  /getSupervisors:
+    get:
+      tags:
+      - "supervisor"
+      summary: "Get all supervisor"
+      description: "This can only be done by an administrator or a supervisor"
+      operationId: "getSupervisors"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "Successful operation"
+          schema:
+            allOf:
+            - $ref: "#/definitions/Supervisor"
+            - {}
+        "404":
+          description: "URL not found"
+      x-swagger-router-controller: "Supervisor"
+  /getSupervisorByName/{name}:
+    get:
+      tags:
+      - "supervisor"
+      summary: "Get supervisor by name"
+      description: "This can only be done by an administrator or a supervisor"
+      operationId: "getSupervisorByName"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "name"
+        in: "path"
+        description: "The name that needs to be fetched"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/Supervisor"
+        "400":
+          description: "Invalid name supplied"
+        "404":
+          description: "Supervisor not found"
+      x-swagger-router-controller: "Supervisor"
+  /getSupervisorById/{supervisorId}:
+    get:
+      tags:
+      - "supervisor"
+      summary: "Get supervisor by ID"
+      description: "This can only be done by an administrator or a supervisor"
+      operationId: "getSupervisorById"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "supervisorId"
+        in: "path"
+        description: "ID of supervisor to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/Supervisor"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Supervisor not found"
+      x-swagger-router-controller: "Supervisor"
+  /modifySupervisorById/{supervisorId}:
+    put:
+      tags:
+      - "supervisor"
+      summary: "Updated supervisor using ID"
+      description: "This can only be done by an administrator or a supervisor"
+      operationId: "modifySupervisorById"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "supervisorId"
+        in: "path"
+        description: "ID of supervisor that needs to be updated"
+        required: true
+        type: "integer"
+        format: "int64"
+      - in: "body"
+        name: "body"
+        description: "Updated supervisor object"
+        required: true
+        schema:
+          $ref: "#/definitions/Supervisor"
+      responses:
+        "200":
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/Supervisor"
+        "400":
+          description: "Invalid ID or datas supplied"
+        "404":
+          description: "Supervisor not found"
+      x-swagger-router-controller: "Supervisor"
+  /deleteSupervisorById/{supervisorId}:
+    delete:
+      tags:
+      - "supervisor"
+      summary: "Delete supervisor using ID"
+      description: "This can only be done by an administrator"
+      operationId: "deleteSupervisorById"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "supervisorId"
+        in: "path"
+        description: "Supervisor ID to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "Successful operation"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Supervisor not found"
+      x-swagger-router-controller: "Supervisor"
+  /postNewUser:
+    post:
+      tags:
+      - "user"
+      summary: "Create user"
+      description: "This can only be done by a supervisor"
+      operationId: "postNewUser"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Created user object"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        "200":
+          description: "Successful operation"
+        "400":
+          description: "Invalid datas supplied"
+        "404":
+          description: "URL not found"
+      x-swagger-router-controller: "User"
+  /getUsers:
+    get:
+      tags:
+      - "user"
+      summary: "Get all user"
+      description: "This can be done by an administrator, a supervisor or a user"
+      operationId: "getUsers"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "Successful operation"
+          schema:
+            allOf:
+            - $ref: "#/definitions/User"
+            - {}
+        "404":
+          description: "URL not found"
+      x-swagger-router-controller: "User"
+  /getUserByName/{name}:
+    get:
+      tags:
+      - "user"
+      summary: "Get user by name"
+      description: "This can be done by an administrator, a supervisor or a user"
+      operationId: "getUserByName"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "name"
+        in: "path"
+        description: "The name that needs to be fetched"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/User"
+        "400":
+          description: "Invalid name supplied"
+        "404":
+          description: "User not found"
+      x-swagger-router-controller: "User"
+  /getUserById/{userId}:
+    get:
+      tags:
+      - "user"
+      summary: "Get user by ID"
+      description: "This can be done by an administrator, a supervisor or a user"
+      operationId: "getUserById"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "userId"
+        in: "path"
+        description: "ID of user to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/User"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "User not found"
+      x-swagger-router-controller: "User"
+  /modifyUserById/{userId}:
+    put:
+      tags:
+      - "user"
+      summary: "Updated user using ID"
+      description: "This can only be done by a supervisor or a user"
+      operationId: "modifyUserById"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "userId"
+        in: "path"
+        description: "ID of user that needs to be updated"
+        required: true
+        type: "integer"
+        format: "int64"
+      - in: "body"
+        name: "body"
+        description: "Updated user object"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        "200":
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/User"
+        "400":
+          description: "Invalid ID or datas supplied"
+        "404":
+          description: "User not found"
+      x-swagger-router-controller: "User"
+  /deleteUserById/{userId}:
+    delete:
+      tags:
+      - "user"
+      summary: "Delete user using ID"
+      description: "This can only be done by a supervisor"
+      operationId: "deleteUserById"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "userId"
+        in: "path"
+        description: "User ID to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "Successful operation"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "User not found"
+      x-swagger-router-controller: "User"
+  /loginAdministrator:
+    post:
+      tags:
+      - "login"
+      summary: "Login administrator"
+      description: "Login in the sistem as administrador"
+      operationId: "loginAdministrator"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Login object"
+        required: true
+        schema:
+          $ref: "#/definitions/Login"
+      responses:
+        "200":
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/Administrator"
+        "400":
+          description: "Invalid username/password supplied"
+        "404":
+          description: "URL not found"
+      x-swagger-router-controller: "Login"
+  /loginSupervisor:
+    post:
+      tags:
+      - "login"
+      summary: "Login supervisor"
+      description: "Login in the sistem as supervisor"
+      operationId: "loginSupervisor"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Login object"
+        required: true
+        schema:
+          $ref: "#/definitions/Login"
+      responses:
+        "200":
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/Supervisor"
+        "400":
+          description: "Invalid username/password supplied"
+        "404":
+          description: "URL not found"
+      x-swagger-router-controller: "Login"
+  /loginUser:
+    post:
+      tags:
+      - "login"
+      summary: "Login user"
+      description: "Login in the sistem as user"
+      operationId: "loginUser"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Login object"
+        required: true
+        schema:
+          $ref: "#/definitions/Login"
+      responses:
+        "200":
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/User"
+        "400":
+          description: "Invalid username/password supplied"
+        "404":
+          description: "URL not found"
+      x-swagger-router-controller: "Login"
+  /postNewQuestion:
+    post:
+      tags:
+      - "question"
+      summary: "Create question"
+      description: "This can only be done by a supervisor"
+      operationId: "postNewQuestion"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Created question object"
+        required: true
+        schema:
+          $ref: "#/definitions/Question"
+      responses:
+        "200":
+          description: "Successful operation"
+        "400":
+          description: "Invalid datas supplied"
+        "404":
+          description: "URL not found"
+      x-swagger-router-controller: "Question"
+  /getQuestions:
+    get:
+      tags:
+      - "question"
+      summary: "Get all question"
+      description: "This can be done by a supervisor"
+      operationId: "getQuestions"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "Successful operation"
+          schema:
+            allOf:
+            - $ref: "#/definitions/Question"
+            - {}
+        "404":
+          description: "URL not found"
+      x-swagger-router-controller: "Question"
+  /getQuestionById/{questionId}:
+    get:
+      tags:
+      - "question"
+      summary: "Get question by ID"
+      description: "This can be done by a supervisor"
+      operationId: "getQuestionById"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "questionId"
+        in: "path"
+        description: "ID of question to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/Question"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Question not found"
+      x-swagger-router-controller: "Question"
+  /modifyQuestionById/{questionId}:
+    put:
+      tags:
+      - "question"
+      summary: "Updated question using ID"
+      description: "This can only be done by a supervisor"
+      operationId: "modifyQuestionById"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "questionId"
+        in: "path"
+        description: "ID of question that needs to be updated"
+        required: true
+        type: "integer"
+        format: "int64"
+      - in: "body"
+        name: "body"
+        description: "Updated question object"
+        required: true
+        schema:
+          $ref: "#/definitions/Question"
+      responses:
+        "200":
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/Question"
+        "400":
+          description: "Invalid ID or datas supplied"
+        "404":
+          description: "Question not found"
+      x-swagger-router-controller: "Question"
+  /deleteQuestionById/{questionId}:
+    delete:
+      tags:
+      - "question"
+      summary: "Delete question using ID"
+      description: "This can only be done by a supervisor"
+      operationId: "deleteQuestionById"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "questionId"
+        in: "path"
+        description: "Question ID to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "Successful operation"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Question not found"
+      x-swagger-router-controller: "Question"
+  /postNewPoll:
+    post:
+      tags:
+      - "poll"
+      summary: "Create poll"
+      description: "This can only be done by a supervisor"
+      operationId: "postNewPoll"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Created poll object"
+        required: true
+        schema:
+          $ref: "#/definitions/Poll"
+      responses:
+        "200":
+          description: "Successful operation"
+        "400":
+          description: "Invalid datas supplied"
+        "404":
+          description: "URL not found"
+      x-swagger-router-controller: "Poll"
+  /getPolls:
+    get:
+      tags:
+      - "poll"
+      summary: "Get all poll"
+      description: "This can be done by a supervisor"
+      operationId: "getPolls"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "Successful operation"
+          schema:
+            allOf:
+            - $ref: "#/definitions/Poll"
+            - {}
+        "404":
+          description: "URL not found"
+      x-swagger-router-controller: "Poll"
+  /getPollById/{pollId}:
+    get:
+      tags:
+      - "poll"
+      summary: "Get poll by ID"
+      description: "This can be done by a supervisor"
+      operationId: "getPollById"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "pollId"
+        in: "path"
+        description: "ID of poll to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/Poll"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Poll not found"
+      x-swagger-router-controller: "Poll"
+  /modifyPollById/{pollId}:
+    put:
+      tags:
+      - "poll"
+      summary: "Updated poll using ID"
+      description: "This can only be done by a supervisor"
+      operationId: "modifyPollById"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "pollId"
+        in: "path"
+        description: "ID of poll that needs to be updated"
+        required: true
+        type: "integer"
+        format: "int64"
+      - in: "body"
+        name: "body"
+        description: "Updated poll object"
+        required: true
+        schema:
+          $ref: "#/definitions/Poll"
+      responses:
+        "200":
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/Poll"
+        "400":
+          description: "Invalid ID or datas supplied"
+        "404":
+          description: "Poll not found"
+      x-swagger-router-controller: "Poll"
+  /deletePollById/{pollId}:
+    delete:
+      tags:
+      - "poll"
+      summary: "Delete poll using ID"
+      description: "This can only be done by a supervisor"
+      operationId: "deletePollById"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "pollId"
+        in: "path"
+        description: "Poll ID to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "Successful operation"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Poll not found"
+      x-swagger-router-controller: "Poll"
+definitions:
+  Department:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
+      createBy:
+        type: "integer"
+        format: "int64"
+        example: 1
+      numEmpleados:
+        type: "integer"
+        format: "int64"
+        example: 0
+    xml:
+      name: "Department"
+    example:
+      createBy: 1
+      name: "name"
+      id: 1
+      numEmpleados: 0
+  Administrator:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      role:
+        type: "string"
+        enum:
+        - "administrator"
+      name:
+        type: "string"
+      firstName:
+        type: "string"
+      lastName:
+        type: "string"
+      department:
+        type: "integer"
+        format: "int64"
+      email:
+        type: "string"
+      username:
+        type: "string"
+      password:
+        type: "string"
+    xml:
+      name: "Administrator"
+    example:
+      firstName: "firstName"
+      lastName: "lastName"
+      password: "password"
+      role: "administrator"
+      name: "name"
+      id: 1
+      department: 1
+      email: "email"
+      username: "username"
+  Supervisor:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      role:
+        type: "string"
+        enum:
+        - "supervisor"
+      name:
+        type: "string"
+      firstName:
+        type: "string"
+      lastName:
+        type: "string"
+      department:
+        type: "integer"
+        format: "int64"
+      email:
+        type: "string"
+      username:
+        type: "string"
+      password:
+        type: "string"
+    xml:
+      name: "Supervisor"
+    example:
+      firstName: "firstName"
+      lastName: "lastName"
+      password: "password"
+      role: "supervisor"
+      name: "name"
+      id: 1
+      department: 1
+      email: "email"
+      username: "username"
+  User:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      role:
+        type: "string"
+        enum:
+        - "user"
+      name:
+        type: "string"
+      firstName:
+        type: "string"
+      lastName:
+        type: "string"
+      department:
+        type: "integer"
+        format: "int64"
+      email:
+        type: "string"
+      username:
+        type: "string"
+      password:
+        type: "string"
+    xml:
+      name: "User"
+    example:
+      firstName: "firstName"
+      lastName: "lastName"
+      password: "password"
+      role: "user"
+      name: "name"
+      id: 1
+      department: 1
+      email: "email"
+      username: "username"
+  Login:
+    type: "object"
+    properties:
+      username:
+        type: "string"
+      password:
+        type: "string"
+      role:
+        type: "string"
+        enum:
+        - "administrator"
+        - "supervisor"
+        - "user"
+    xml:
+      name: "Login"
+    example:
+      username: "username"
+      password: "password"
+      role: "administrator"
+  Question:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      enunciado:
+        type: "string"
+      respuesta1:
+        type: "string"
+      resultado1:
+        type: "boolean"
+      respuesta2:
+        type: "string"
+      resultado2:
+        type: "boolean"
+      respuesta3:
+        type: "string"
+      resultado3:
+        type: "boolean"
+    xml:
+      name: "Question"
+    example:
+      id: 1
+      enunciado: "enunciado"
+      respuesta1: "respuesta1"
+      resultado1: true
+      respuesta2: "respuesta2"
+      resultado2: false
+      respuesta3: "respuesta3"
+      resultado3: false
+  Poll:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      titulo:
+        type: "string"
+      descripcion:
+        type: "string"
+      preguntas:
+        type: "array"
+        items:
+          $ref: "#/definitions/Question"
+    xml:
+      name: "Poll"
+    example:
+      id: 1
+      titulo: "titulo"
+      descripcion: "descripcion"
+      preguntas:
+      - id: 1
+        enunciado: "enunciado"
+        respuesta1: "respuesta1"
+        resultado1: true
+        respuesta2: "respuesta2"
+        resultado2: false
+        respuesta3: "respuesta3"
+        resultado3: false
