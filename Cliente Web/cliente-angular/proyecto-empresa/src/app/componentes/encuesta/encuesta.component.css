@@ -1,0 +1,280 @@
+.ocultar {
+  display: none;
+}
+
+.mostrar {
+  display: block;
+}
+
+.green {
+  color: green;
+}
+
+.red {
+  color: red;
+}
+
+.finalizar {
+  margin-top: -40px;
+}
+
+.descripcion {
+    background-image: url('../../../assets/imagenes/encuesta.jpg');
+    height: 250px;
+    width: 100vw;
+    margin-left: -322px;
+    margin-top: -50px;
+    margin-bottom: 20px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.descripcion:after {
+    content: "";
+    position: absolute;
+    width: 102%;
+    margin-left: 0;
+    height: 250px;
+    background: linear-gradient(45deg,#3aa1d1,#64c8cf);
+    opacity: 0.2;
+}
+
+.descripcion > div {
+    margin-top: 64px;
+    color: white;
+    z-index: 1;
+}
+
+.card {
+  margin-left: 54px;
+  width: 800px;
+  height: 320px;
+}
+
+.card-text {
+  display: flex;
+}
+
+.card-text > .form-group {
+  border-bottom: 1px solid black !important;
+}
+
+#respuesta1, #respuesta2, #respuesta3 {
+  padding-left: 0;
+  margin-left: -2px;
+}
+
+.descripcion > div > p {
+    font-size: 20px;
+}
+
+h1 {
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+p {
+  font-size: 1.125rem;
+}
+
+h1,
+p {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+h3 {
+  margin-bottom: 0.5rem;
+}
+
+.enunciado-pregunta {
+  font-size: 18px;
+  color: #636466 !important;
+}
+
+label {
+  display: flex;
+  align-items: center;
+  font-size: 1.125rem;
+  margin-bottom: 0.5rem;
+}
+
+#titulo {
+  color: white;
+  background-color: transparent;
+  border-bottom: 1px solid rgb(255, 255, 255) !important;
+  width: 500px;
+  height: 50px;
+  margin-right: auto;
+  margin-left: auto;
+  font-size: 35px;
+  text-align: center;
+  padding-bottom: 16px;
+}
+
+#titulo::placeholder, #descripcion::placeholder { 
+  color: white; 
+}
+
+#descripcion {
+  color: white;
+  background-color: transparent;
+  border-bottom: 1px solid rgb(255, 255, 255) !important;
+  width: 900px;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+  font-size: 20px;
+}
+
+#pregunta {
+  border-bottom: 1px solid black !important;
+  padding-left: 0;
+}
+
+.letra-pregunta {
+  float: left;
+  margin-top: -2px;
+  margin-right: 8px;
+}
+
+.final-encuesta {
+  margin-top: -85px;
+  margin-left: -43px;
+}
+
+.crear-pregunta {
+  width: fit-content !important;
+}
+
+input,
+button {
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.encabezado {
+  margin-left: 225px;
+  margin-top: 2px !important;
+}
+
+.form-group-check1 {
+  position: absolute;
+  top: 60%;
+  left: 6.5%;
+}
+
+.form-group-check2 {
+  position: absolute;
+  top: 60%;
+  left: 38.5%;
+}
+
+.form-group-check3 {
+  position: absolute;
+  top: 60%;
+  left: 70.5%;
+}
+
+.form-check-label {
+  display: block;
+}
+
+.form-check-input {
+  margin-top: 4px;
+}
+
+.container {
+  width: 100%;
+  margin: 3.125rem auto 0 auto;
+}
+
+.pregunta {
+    text-align: left;
+    margin-bottom: 4px;
+}
+
+.form-group {
+  margin: 0 auto 1.25rem auto;
+  padding: 0.25rem;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  height: 2.375rem;
+  padding: 0.375rem 0.75rem;
+  color: #495057;
+  background-color: white;
+  background-clip: padding-box;
+  border: 1px solid white;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control:focus {
+  border-color: #3aa1d1;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(97, 197, 208, 0.25);
+}
+
+button:not(.btn-outline-primary, .btn-outline-danger) {
+    color: white;
+    background: linear-gradient(45deg,#3aa1d1,#64c8cf);
+    border-radius: 30px;
+    width: 300px;
+    margin-top: 30px;
+    border: none;
+}
+
+.separador {
+  width: 1028px;
+}
+
+.separacion-preguntas {
+  margin-top: 30px;
+}
+
+.btn-outline-primary, .btn-outline-danger {
+  width: fit-content !important;
+}
+
+.btn-outline-primary {
+  position: absolute;
+  right: 340px;
+  margin-top: 30px !important;
+}
+
+.btn-outline-danger {
+  position: absolute;
+  right: 245px;
+  margin-top: 30px !important;
+}
+
+.alert-secondary {
+    color: #494949 !important;
+    background-color: #008eff21 !important;
+    border-color: #079cff57 !important;
+    margin: 0 auto 20px auto;
+}
+
+@media (min-width: 576px) {
+    .container {
+      max-width: 540px;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .container {
+      max-width: 980px;
+    }
+  
+    .col-md-2 {
+      flex: 0 0 auto;
+      width: 32.666667% !important;
+      margin: auto;
+    }
+  }

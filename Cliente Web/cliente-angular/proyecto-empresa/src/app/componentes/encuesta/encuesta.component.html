@@ -1,0 +1,230 @@
+<app-cabecera></app-cabecera>
+<div class="container">
+    <form class="col-md-12 col-lg-9 col-sm-12" #formTitulo="ngForm" *ngIf="encabezado === false">
+        <section class="row descripcion">
+            <div class="col-md-12">
+                <div class="form-group position-relative mb-4">
+                    <input type="text" class="form-control border-0 rounded-0 shadow-none" name="titulo" id="titulo"
+                        placeholder="Título encuesta" [(ngModel)]="titulo" required>
+                </div>
+                <div class="form-group position-relative mb-4">
+                    <input type="text" class="form-control border-0 rounded-0 shadow-none" name="descripcion"
+                        placeholder="Descripción de la encuesta" id="descripcion" [(ngModel)]="descripcion" required>
+                </div>
+            </div>
+        </section>
+        <button type="button" class="btn btn-success btn-block shadow border-0 py-2 text-uppercase encabezado" (click)="crearTituloDescripcion()"
+            [disabled]="!formTitulo.form.valid">Añadir título y descripción</button>
+    </form>
+    <section class="row descripcion" *ngIf="encabezado === true">
+        <div class="col-md-12">
+            <h1 class="text-center">{{ encuesta.titulo }}</h1>
+            <p class="text-center">{{ encuesta.descripcion }}</p>
+        </div>
+    </section>
+    <br />
+    <form class="col-md-12 col-lg-9 col-sm-12" #formEncuesta="ngForm" *ngIf="preguntas === true && encabezado === true">
+        <div class="card mb-5">
+            <h5 class="card-header">Pregunta {{ numPregunta }}</h5>
+            <div class="card-body">
+                <h5 class="card-title">
+                    <div class="form-group position-relative mb-12">
+                        <input type="text" class="form-control border-0 rounded-0 shadow-none" name="pregunta"
+                            id="pregunta" [(ngModel)]="pregunta.enunciado"
+                            placeholder="Enunciado pregunta {{ numPregunta }}" required>
+                    </div>
+                </h5>
+
+
+                <div class="card-text">
+                    <div class="form-group position-relative mb-4">
+                        <input type="text" class="form-control border-0 rounded-0 shadow-none" name="respuesta"
+                            id="respuesta1" [(ngModel)]="pregunta.respuesta1" placeholder="Respuesta 1" required>
+                    </div>
+                    <br />
+                    <div class="form-group-check1 mb-3">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" id="resultadoa-pregunta{{ numPregunta }}"
+                                name="resultado1" [value]="true" [(ngModel)]="pregunta.resultado1" required>
+                            <label class="form-check-label" for="resultado1">Verdadero</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" id="resultadoa-pregunta{{ numPregunta }}"
+                                name="resultado1" [value]="false" [(ngModel)]="pregunta.resultado1" required>
+                            <label class="form-check-label" for="resultado1">Falso</label>
+                        </div>
+                    </div>
+                    <div class="form-group position-relative mb-4">
+                        <input type="text" class="form-control border-0 rounded-0 shadow-none" name="respuesta"
+                            id="respuesta2" [(ngModel)]="pregunta.respuesta2" placeholder="Respuesta 2" required>
+                    </div>
+                    <br />
+                    <div class="form-group-check2 mb-3">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" id="resultadob-pregunta{{ numPregunta }}"
+                                name="resultado2" [value]="true" [(ngModel)]="pregunta.resultado2" required>
+                            <label class="form-check-label" for="resultado2">Verdadero</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" id="resultadob-pregunta{{ numPregunta }}"
+                                name="resultado2" [value]="false" [(ngModel)]="pregunta.resultado2" required>
+                            <label class="form-check-label" for="resultado2">Falso</label>
+                        </div>
+                    </div>
+                    <div class="form-group position-relative mb-4">
+                        <input type="text" class="form-control border-0 rounded-0 shadow-none" name="respuesta"
+                            id="respuesta3" [(ngModel)]="pregunta.respuesta3" placeholder="Respuesta 3" required>
+                    </div>
+                </div>
+                <br />
+                <div class="form-group-check3 mb-3">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="resultadoc-pregunta{{ numPregunta }}"
+                            name="resultado3" [value]="true" [(ngModel)]="pregunta.resultado3" required>
+                        <label class="form-check-label" for="resultado3">Verdadero</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="resultadoc-pregunta{{ numPregunta }}"
+                            name="resultado3" [value]="false" [(ngModel)]="pregunta.resultado3" required>
+                        <label class="form-check-label" for="resultado3">Falso</label>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-primary crear-pregunta" (click)="crearNuevaPregunta()"
+                    [disabled]="!formEncuesta.form.valid">Añadir pregunta</button>
+            </div>
+        </div>
+    </form>
+    <section class="row finalizar">
+        <div class="col-md-12">
+            <button type="button" *ngIf="preguntas === true && encabezado === true"
+                class="btn btn-success btn-block shadow border-0 py-2 text-uppercase final-encuesta"
+                (click)="finalizarEncuesta()">Finalizar encuesta</button>
+        </div>
+    </section>
+    <div *ngIf="preguntas === false && modificar === false">
+        <div *ngFor="let pregunta of encuesta.preguntas; let i = index" class="separacion-preguntas">
+            <section class="row">
+                <div class="col-md-12">
+                    <h3 class="enunciado-pregunta">PREGUNTA {{ i + 1 }}</h3>
+                </div>
+            </section>
+            <hr class="separador" />
+            <section class="row pregunta">
+                <div class="col-md-12">
+                    <p><strong>{{ pregunta.enunciado }}</strong></p>
+                </div>
+                <div class="col-md-2">
+                    <span class="letra-pregunta">a)</span>
+                    <label class="radio">
+                        <input type="radio" name="repuesta{{ i + 1 }}" id="repuesta{{ i + 1 }}a"
+                            value="{{ pregunta.resultado1 }}">&nbsp; <span
+                            [ngClass]="{'green' : pregunta.resultado1 === true, 'red': pregunta.resultado1 === false}">{{
+                            pregunta.respuesta1 }}</span>
+                    </label>
+                </div>
+                <div class="col-md-2">
+                    <span class="letra-pregunta">b)</span>
+                    <label class="radio">
+                        <input type="radio" name="repuesta{{ i + 1 }}" id="repuesta{{ i + 1 }}b"
+                            value="{{ pregunta.resultado2 }}">&nbsp; <span
+                            [ngClass]="{'green' : pregunta.resultado2 === true, 'red': pregunta.resultado2 === false}">{{
+                            pregunta.respuesta2 }}</span>
+                    </label>
+                </div>
+                <div class="col-md-2">
+                    <span class="letra-pregunta">c)</span>
+                    <label class="radio">
+                        <input type="radio" name="repuesta{{ i + 1 }}" id="repuesta{{ i + 1 }}c"
+                            value="{{ pregunta.resultado3 }}">&nbsp; <span
+                            [ngClass]="{'green' : pregunta.resultado3 === true, 'red': pregunta.resultado3 === false}">{{
+                            pregunta.respuesta3 }}</span>
+                    </label>
+                </div>
+                <button type="button" class="btn btn-outline-primary m-0" (click)="modificarPregunta(pregunta)">Modificar</button>
+                <button type="submit" class="btn btn-outline-danger m-0" (click)="eliminarPreguntaPorId(pregunta.id, pregunta)">Eliminar</button>
+            </section>
+        </div>
+        <br />
+        <section class="row">
+            <div class="col-md-12">
+                <button type="button" class="btn btn-success btn-block shadow border-0 py-2 text-uppercase"
+                    (click)="otraNuevaPregunta()">Añadir nueva pregunta</button>
+            </div>
+            <div class="col-md-12">
+                <button type="button" class="btn btn-success btn-block shadow border-0 py-2 text-uppercase"
+                    (click)="crearNuevaEncuesta()">Guardar encuesta</button>
+            </div>
+
+        </section>
+    </div>
+    <form class="col-md-12 col-lg-9 col-sm-12" #formEncuesta="ngForm" *ngIf="modificar === true">
+        <div class="card mb-5">
+            <h5 class="card-header">Pregunta {{ numPregunta }}</h5>
+            <div class="card-body">
+                <h5 class="card-title">
+                    <div class="form-group position-relative mb-12">
+                        <input type="text" class="form-control border-0 rounded-0 shadow-none" name="pregunta"
+                            id="pregunta" [(ngModel)]="pregunta.enunciado"
+                            placeholder="Enunciado pregunta {{ numPregunta }}" required>
+                    </div>
+                </h5>
+                <div class="card-text">
+                    <div class="form-group position-relative mb-4">
+                        <input type="text" class="form-control border-0 rounded-0 shadow-none" name="respuesta"
+                            id="respuesta1" [(ngModel)]="pregunta.respuesta1" placeholder="Respuesta 1" required>
+                    </div>
+                    <br />
+                    <div class="form-group-check1 mb-3">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" id="resultadoa-pregunta{{ numPregunta }}"
+                                name="resultado1" [value]="true" [(ngModel)]="pregunta.resultado1" required>
+                            <label class="form-check-label" for="resultado1">Verdadero</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" id="resultadoa-pregunta{{ numPregunta }}"
+                                name="resultado1" [value]="false" [(ngModel)]="pregunta.resultado1" required>
+                            <label class="form-check-label" for="resultado1">Falso</label>
+                        </div>
+                    </div>
+                    <div class="form-group position-relative mb-4">
+                        <input type="text" class="form-control border-0 rounded-0 shadow-none" name="respuesta"
+                            id="respuesta2" [(ngModel)]="pregunta.respuesta2" placeholder="Respuesta 2" required>
+                    </div>
+                    <br />
+                    <div class="form-group-check2 mb-3">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" id="resultadob-pregunta{{ numPregunta }}"
+                                name="resultado2" [value]="true" [(ngModel)]="pregunta.resultado2" required>
+                            <label class="form-check-label" for="resultado2">Verdadero</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" id="resultadob-pregunta{{ numPregunta }}"
+                                name="resultado2" [value]="false" [(ngModel)]="pregunta.resultado2" required>
+                            <label class="form-check-label" for="resultado2">Falso</label>
+                        </div>
+                    </div>
+                    <div class="form-group position-relative mb-4">
+                        <input type="text" class="form-control border-0 rounded-0 shadow-none" name="respuesta"
+                            id="respuesta3" [(ngModel)]="pregunta.respuesta3" placeholder="Respuesta 3" required>
+                    </div>
+                </div>
+                <br />
+                <div class="form-group-check3 mb-3">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="resultadoc-pregunta{{ numPregunta }}"
+                            name="resultado3" [value]="true" [(ngModel)]="pregunta.resultado3" required>
+                        <label class="form-check-label" for="resultado3">Verdadero</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="resultadoc-pregunta{{ numPregunta }}"
+                            name="resultado3" [value]="false" [(ngModel)]="pregunta.resultado3" required>
+                        <label class="form-check-label" for="resultado3">Falso</label>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-primary crear-pregunta" (click)="modificarPreguntaPorId()"
+                    [disabled]="!formEncuesta.form.valid">Modificar pregunta</button>
+            </div>
+        </div>
+    </form>
+</div>
+<app-footer></app-footer>
