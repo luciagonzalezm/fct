@@ -1,0 +1,68 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark p-3">
+  <div class="container-fluid">
+    <a class="navbar-brand" [routerLink]="['/inicio']">Compañía</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/inicio']" [routerLinkActive]="['active']">Inicio</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" [routerLink]="['/departamentos']" [routerLinkActive]="['active']"
+            id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Departamentos
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" [routerLink]="['/departamentos/nuevo']">Crear departamentos</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" [routerLink]="['/administradores']" [routerLinkActive]="['active']"
+            id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Administradores
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" [routerLink]="['/administradores/nuevo']">Crear administrador</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" [routerLink]="['/supervisores']" [routerLinkActive]="['active']"
+            id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Supervisores
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" [routerLink]="['/supervisores/nuevo']">Crear supervisor</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" [routerLink]="['/supervisores/encuesta/nueva']">Crear encuesta</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/supervisores/encuestas/mostrar']">Visualizar encuestas</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" [routerLink]="['/usuarios']" [routerLinkActive]="['active']"
+            id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Usuarios
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" [routerLink]="['/usuarios/nuevo']">Crear usuario</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="d-flex align-items-center p-1">
+      <div class="flex-shrink-0 dropdown">
+        <div class="d-block link-dark text-decoration-none dropdown-toggle">
+          <p class="user">{{ nombrePersonaLogueada }}</p>
+          <img src="../../../assets/imagenes/user.png" alt="mdo" width="40" height="40" class="rounded-circle">
+        </div>
+      </div>
+    </div>
+    <div class="text-end">
+      <button type="submit" class="btn btn-outline-light me-2" (click)="hacerLogout()">Logout</button>
+    </div>
+  </div>
+</nav>
