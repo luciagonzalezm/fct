@@ -1,0 +1,61 @@
+<app-cabecera></app-cabecera>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a [routerLink]="['/inicio']">Inicio</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Usuarios</li>
+    </ol>
+</nav>
+<h1 class="mt-5 text-center">Consultar usuarios</h1>
+<form #formBusquedaUsuario="ngForm">
+    <input type="text" placeholder="Nombre del usuario a buscar" name="buscador" id="buscador" [(ngModel)]="userName"
+        #buscador="ngModel" required pattern="^[\w'\-,.][^0-9_!¡?÷?¿(\)\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$" />
+    <button type="submit" class="btn btn-buscador" [disabled]="!formBusquedaUsuario.form.valid"
+        (click)="buscarUsuarioPorNombre()"></button>
+</form>
+<div *ngIf="buscador.invalid && (buscador.dirty || buscador.touched)"
+    class="alert alert-secondary col-md-6 col-lg-6 col-sm-6 mt-4" role="alert">
+    <div *ngIf="buscador.errors?.required">
+        {{ limpiarBusqueda() }}
+        El nombre del usuario es obligatorio
+    </div>
+    <div *ngIf="buscador.errors?.pattern">
+        {{ limpiarBusqueda() }}
+        Introduzca un nombre válido
+    </div>
+</div>
+<div *ngIf="encontrado === true" class="text-center row p-0 m-4 justify-content-center">
+    <div class="table-responsive m-2 col-md-9 col-lg-9">
+        <table class="table table-hover text-center"
+            [ngClass]="{'ocultar' : ocultarTabla() || !formBusquedaUsuario.form.valid }">
+            <thead>
+                <tr class="table-blue">
+                    <th scope="col">Id</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Usuario</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Departamento</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of usersFind; let i = index">
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.name }} {{ user.firstName }} {{ user.lastName }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ departments[i]?.name }}</td>
+                    <td>
+                        <button type="button" class="btn btn-outline-primary m-0"
+                            (click)="modificarUsuario(user.id)">Modificar</button>
+                    </td>
+                    <td>
+                        <button type="submit" class="btn btn-outline-danger m-0"
+                            (click)="eliminarUsuarioPorId(user.id)">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<app-footer></app-footer>
