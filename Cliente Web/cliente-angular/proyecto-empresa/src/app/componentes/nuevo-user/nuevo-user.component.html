@@ -1,0 +1,126 @@
+<app-cabecera></app-cabecera>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a [routerLink]="['/inicio']">Inicio</a></li>
+        <li class="breadcrumb-item"><a [routerLink]="['/usuarios']">Usuarios</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Nuevo usuario</li>
+    </ol>
+</nav>
+<h1 class="mt-5 text-center">Crear nuevo usuario</h1>
+<form class="text-center col-md-4 col-lg-4" #formCrearUsuario="ngForm">
+    <div class="form-group mb-3">
+        <label for="name" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="name" name="name" [(ngModel)]="user.name" #name="ngModel"
+            required pattern="^[\w'\-,.][^0-9_!¡?÷?¿(\)\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$">
+    </div>
+    <div *ngIf="name.invalid && (name.dirty || name.touched)"
+        class="alert alert-secondary col-md-6 col-lg-6 col-sm-6 mt-4" role="alert">
+        <div *ngIf="name.errors?.required">
+            El nombre del usuario es obligatorio
+        </div>
+        <div *ngIf="name.errors?.pattern">
+            Introduzca un nombre válido
+        </div>
+    </div>
+    <div class="form-group mb-3">
+        <label for="firstName" class="form-label">Primer apellido</label>
+        <input type="text" name="firstName" id="firstName" class="form-control" required
+            pattern="^[\w'\-,.][^0-9_!¡?÷?¿(\)\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$" [(ngModel)]="user.firstName"
+            #firstName="ngModel">
+    </div>
+    <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="alert alert-secondary" role="alert">
+        <div *ngIf="firstName.errors?.required">
+            El primer apellido es obligatorio
+        </div>
+        <div *ngIf="firstName.errors?.pattern">
+            Introduzca un primer apellido válido
+        </div>
+    </div>
+    <div class="form-group mb-3">
+        <label for="lastName" class="form-label">Segundo apellido</label>
+        <input type="text" name="lastName" id="lastName" class="form-control" required
+            pattern="^[\w'\-,.][^0-9_!¡?÷?¿(\)\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$" [(ngModel)]="user.lastName"
+            #lastName="ngModel">
+    </div>
+    <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="alert alert-secondary" role="alert">
+        <div *ngIf="lastName.errors?.required">
+            El segundo apellido es obligatorio
+        </div>
+        <div *ngIf="lastName.errors?.pattern">
+            Introduzca un segundo apellido válido
+        </div>
+    </div>
+    <div class="form-group mb-3">
+        <label for="username" class="form-label">Usuario</label>
+        <input type="text" class="form-control" name="username"
+            id="username" [(ngModel)]="user.username" #username="ngModel"
+            required minlength="3">
+    </div>
+    <div *ngIf="username.invalid && (username.dirty || username.touched)"
+        class="alert alert-secondary" role="alert">
+        <div *ngIf="username.errors?.required">
+            El usuario es obligatorio
+        </div>
+        <div *ngIf="username.errors?.minlength">
+            El usuario debe tener al menos 3 caracteres
+        </div>
+    </div>
+    <div class="form-group mb-3">
+        <label for="password" class="form-label">Contraseña</label>
+        <input type="password" class="form-control"
+            name="password" id="password" [(ngModel)]="user.password"
+            #password="ngModel" required minlength="8" maxlength="16"
+            pattern="^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$">
+    </div>
+    <div *ngIf="password.invalid && (password.dirty || password.touched)"
+        class="alert alert-secondary" role="alert">
+        <div *ngIf="password.errors?.required">
+            La contraseña es obligatoria
+        </div>
+        <div *ngIf="password.errors?.pattern">
+            La contraseña debe tener al menos un número, una minúscula, una mayúscula y 8 caracteres
+        </div>
+    </div>
+    <div class="form-group mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" name="email" id="email" class="form-control" required
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]="user.email" #email="ngModel">
+    </div>
+    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-secondary" role="alert">
+        <div *ngIf="email.errors?.required">
+            El email es obligatorio
+        </div>
+        <div *ngIf="email.errors?.pattern">
+            Introduzca un email válido
+        </div>
+    </div>
+    <div class="form-group mb-3">
+        <label for="role">Rol</label>
+        <select class="form-select" name="role" id="role"
+            [(ngModel)]="user.role" #role="ngModel" required>
+            <option value="user">Usuario</option>
+        </select>
+    </div>
+
+    <div class="form-group mb-3">
+        <label for="department" class="form-label">Departamento</label>
+        <select class="form-select" id="department" name="department"
+               required [(ngModel)]="user.department" #department="ngModel">
+          <option class="department_option"
+                  *ngFor="let department of departments; let i = index"
+                  [value]="department.id">{{ user.department === department.id ? optionSelected(i) : "" }} {{ department.name }}</option>
+        </select>
+      </div>
+      <div *ngIf="department.invalid && (department.dirty || department.touched)" class="alert alert-secondary" role="alert">
+        <div *ngIf="department.errors?.required">
+            El departamento es obligatorio
+        </div>
+    </div>
+
+    <div class="text-center">
+        <button type="submit" class="btn btn-outline-primary m-1" (click)="crearUsuario()"
+            [disabled]="!formCrearUsuario.form.valid">Crear</button>
+        <button type="button" class="btn btn-outline-secondary m-1" [routerLink]="['/usuarios']">Volver</button>
+    </div>
+</form>
+<app-footer></app-footer>
