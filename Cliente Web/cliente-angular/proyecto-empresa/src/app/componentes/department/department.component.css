@@ -1,0 +1,33 @@
+#buscador {
+    background: url(https://cdn0.iconfinder.com/data/icons/slim-square-icons-basics/100/basics-19-32.png) no-repeat 0px 5px;
+    background-size: 24px;
+    width: 420px;
+    border: transparent;
+    border-bottom: solid 1px #ccc;
+    padding: 10px 10px 10px 30px;
+    outline: none;
+    margin-top: 20px;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+.btn-buscador {
+  display: none;
+}
+
+.alert-secondary {
+  width: 500px;
+  color: #494949 !important;
+  background-color: #008eff21 !important;
+  border-color: #079cff57 !important;
+  margin: auto;
+}
+
+app-footer {
+  position: relative;
+  top: 46vh;
+}
