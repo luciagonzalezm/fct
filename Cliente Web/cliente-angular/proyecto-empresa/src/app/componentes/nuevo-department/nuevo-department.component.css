@@ -1,0 +1,21 @@
+form {
+    margin: auto;
+    padding-top: 20px;
+}
+
+label {
+    float: left;
+}
+
+.alert-secondary {
+    width: 500px;
+    color: #494949 !important;
+    background-color: #008eff21 !important;
+    border-color: #079cff57 !important;
+    margin: 0 auto 20px auto;
+}
+
+app-footer {
+    position: relative;
+    top: 35vh;
+}

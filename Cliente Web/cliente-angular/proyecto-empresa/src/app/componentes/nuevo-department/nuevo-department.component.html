@@ -1,0 +1,31 @@
+<app-cabecera></app-cabecera>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a [routerLink]="['/inicio']">Inicio</a></li>
+        <li class="breadcrumb-item"><a [routerLink]="['/departamentos']">Departamentos</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Nuevo departamento</li>
+    </ol>
+</nav>
+<h1 class="mt-5 text-center">Crear nuevo departamento</h1>
+<form class="text-center col-md-4 col-lg-4" #formCrearDepartamento="ngForm">
+    <div class="form-group mb-3">
+        <label for="name" class="form-label">Nombre del departamento</label>
+        <input type="text" class="form-control" id="name" name="name" [(ngModel)]="department.name" #name="ngModel"
+            required pattern="^[A-Za-z0-9Ññ &_-]*[A-Za-z0-9Ññ][A-Za-z0-9Ññ &_-]*$">
+    </div>
+    <div *ngIf="name.invalid && (name.dirty || name.touched)"
+        class="alert alert-secondary col-md-6 col-lg-6 col-sm-6 mt-4" role="alert">
+        <div *ngIf="name.errors?.required">
+            El nombre del departamento es obligatorio
+        </div>
+        <div *ngIf="name.errors?.pattern">
+            El nombre del departamento solo puede contener letras, números, espacios, guiones y ampersands
+        </div>
+    </div>
+    <div class="text-center">
+        <button type="submit" class="btn btn-outline-primary m-1" (click)="crearDepartamento()"
+            [disabled]="!formCrearDepartamento.form.valid">Crear</button>
+        <button type="button" class="btn btn-outline-secondary m-1" [routerLink]="['/departamentos']">Volver</button>
+    </div>
+</form>
+<app-footer></app-footer>
