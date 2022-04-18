@@ -1,0 +1,65 @@
+<app-cabecera></app-cabecera>
+<div *ngIf="detalles === false">
+    <h1 class="mt-5 text-center">Consultar encuestas</h1>
+    <div class="card" *ngFor="let encuesta of arrayEncuestas; let i = index">
+        <div class="card-header">
+         Encuesta {{ i + 1 }}
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{ encuesta.titulo }}</h5>
+          <p class="card-text">{{ encuesta.descripcion }}</p>
+          <button (click)="mostrarDetalles(encuesta)" class="btn btn-primary">Visualizar detalles</button>
+        </div>
+      </div>
+</div>
+<div *ngIf="detalles === true">
+    <section class="row descripcion">
+        <div class="col-md-12">
+            <h1 class="text-center">{{ encuesta.titulo }}</h1>
+            <p class="text-center">{{ encuesta.descripcion }}</p>
+        </div>
+    </section>
+    <br />
+    <div *ngFor="let pregunta of encuesta.preguntas; let i = index" class="separacion-preguntas">
+        <section class="row">
+            <div class="col-md-12">
+                <h3 class="enunciado-pregunta">PREGUNTA {{ i + 1 }}</h3>
+            </div>
+        </section>
+        <hr class="separador" />
+        <section class="row pregunta">
+            <div class="col-md-12">
+                <p><strong>{{ pregunta.enunciado }}</strong></p>
+            </div>
+            <div class="col-md-2">
+                <span class="letra-pregunta">a)</span>
+                <label class="radio">
+                    <input type="radio" name="repuesta{{ i + 1 }}" id="repuesta{{ i + 1 }}a"
+                        value="{{ pregunta.resultado1 }}">&nbsp; <span
+                        [ngClass]="{'green' : pregunta.resultado1 === true, 'red': pregunta.resultado1 === false}">{{
+                        pregunta.respuesta1 }}</span>
+                </label>
+            </div>
+            <div class="col-md-2">
+                <span class="letra-pregunta">b)</span>
+                <label class="radio">
+                    <input type="radio" name="repuesta{{ i + 1 }}" id="repuesta{{ i + 1 }}b"
+                        value="{{ pregunta.resultado2 }}">&nbsp; <span
+                        [ngClass]="{'green' : pregunta.resultado2 === true, 'red': pregunta.resultado2 === false}">{{
+                        pregunta.respuesta2 }}</span>
+                </label>
+            </div>
+            <div class="col-md-2">
+                <span class="letra-pregunta">c)</span>
+                <label class="radio">
+                    <input type="radio" name="repuesta{{ i + 1 }}" id="repuesta{{ i + 1 }}c"
+                        value="{{ pregunta.resultado3 }}">&nbsp; <span
+                        [ngClass]="{'green' : pregunta.resultado3 === true, 'red': pregunta.resultado3 === false}">{{
+                        pregunta.respuesta3 }}</span>
+                </label>
+            </div>
+        </section>
+    </div>
+    <br />
+</div>
+<app-footer></app-footer>
