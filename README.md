@@ -1,5 +1,5 @@
 # Aplicación web elaborada durante el período de FCT
-El objetivo de dicha aplicación es crear un desarrollo web de una aplicación que simule el funcionamiento de una empresa en la que existen una serie de departamentos, administradores, supervisores y usuarios.
+El objetivo de dicha aplicación es crear un desarrollo web de una aplicación que simule el funcionamiento de la página de una empresa en la que existen una serie de departamentos, administradores, supervisores y usuarios.
 # Pasos para crear el servidor
 Empleando **Swagger Editor**, un editor, donde en formato **YAML** podemos codificar el esqueleto de una **API REST**, definimos los modelos de un departamento, un administrador, un supervisor y un usuario, así como los métodos POST, GET, PUT y DELETE de cada uno de ellos. 
 
